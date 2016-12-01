@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Demop</string>
+    <string name="togglePlayOn">RESUME</string>
+    <string name="togglePlayOff">PAUSE</string>
+</resources>

@@ -1,0 +1,118 @@
+package com.ej.demop;
+
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+
+import com.example.ejplayer.myplaysdk.common.EILPlayerManager;
+public class MainActivity extends AppCompatActivity implements EILPlayerManager.PlayerStateListener{
+
+    private static final String TAG = "appplayer";
+    private EILPlayerManager player;
+    boolean mRecordingEnabled;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        // Intent intent=new Intent(this,PlayActivity.class);  //方法1
+
+        // startActivity(intent);
+        initPlayer();
+        mRecordingEnabled=true;
+    }
+    private void initPlayer() {
+        player = new EILPlayerManager(this,R.id.video_view);
+        Log.i(TAG,"initPlayer start\n");
+        player.setFullScreenOnly(true);
+        player.setScaleType(EILPlayerManager.SCALETYPE_FITXY);
+        player.playInFullScreen(true);
+
+        player.setPlayerStateListener(this);
+
+        //player.play("http://zv.3gv.ifeng.com/live/zhongwen800k.m3u8");
+        player.play("http://videoplay.ejucloud.com/newcode-88b562--20161124101351.mp4");
+
+        // player.play("/storage/emulated/legacy/TingLingPark_4K.mp4");
+        Log.i(TAG,"initPlayer\n");
+    }
+    private void updateControls() {
+        Button toggleRelease = (Button) findViewById(R.id.button_pause);
+        int id = mRecordingEnabled ?
+                R.string.togglePlayOff : R.string.togglePlayOn;
+        toggleRelease.setText(id);
+
+        //CheckBox cb = (CheckBox) findViewById(R.id.rebindHack_checkbox);
+        //cb.setChecked(TextureRender.sWorkAroundContextProblem);
+    }
+    public void clickTogglePlay(@SuppressWarnings("unused") View unused) {
+
+
+
+        if(mRecordingEnabled) {
+            player.stop();
+            mRecordingEnabled=!mRecordingEnabled;
+        }
+        if(!mRecordingEnabled)
+        {
+            player.setFullScreenOnly(true);
+            player.setScaleType(EILPlayerManager.SCALETYPE_FITXY);
+            player.playInFullScreen(true);
+
+            player.setPlayerStateListener(this);
+
+            EditText et = (EditText)findViewById(R.id.editText);
+            String s = et.getText().toString();
+            player.play(s);
+            mRecordingEnabled=!mRecordingEnabled;
+        }
+
+
+        //  updateControls();
+    }
+    public void clickTogglePause(@SuppressWarnings("unused") View unused) {
+
+
+
+        if(mRecordingEnabled)
+            player.pause();
+        else
+            player.onResume();
+        mRecordingEnabled=!mRecordingEnabled;
+        updateControls();
+    }
+    @Override
+    public void onComplete() {
+
+    }
+
+    @Override
+    public void onError() {
+        Log.i(TAG,"error\n");
+        new AlertDialog.Builder(this)
+                .setTitle("ERROR")
+                .setMessage("Can Not Connect To URL, Please try again later")
+                .setPositiveButton("Cancel", null)
+                .show();
+
+    }
+
+    @Override
+    public void onLoading() {
+
+    }
+
+    @Override
+    public void onPlay() {
+
+        //  player.pause();
+        Log.i(TAG,"onPlay\n");
+    }
+}
+
