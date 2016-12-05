@@ -35,7 +35,7 @@
 
     <EditText
         android:inputType="textPersonName"
-        android:text="http://zv.3gv.ifeng.com/live/zhongwen800k.m3u8"
+        android:text="http://videoplay.ejucloud.com/newcode-88b562--20161124101351.mp4"
         android:ems="10"
         android:id="@+id/editText"
         android:layout_height="wrap_content"

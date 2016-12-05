@@ -24,11 +24,12 @@ public class MainActivity extends AppCompatActivity implements EILPlayerManager.
         // Intent intent=new Intent(this,PlayActivity.class);  //方法1
 
         // startActivity(intent);
-        initPlayer();
+        View layout_outer = this.findViewById(R.id.video_view);
+        initPlayer(layout_outer);
         mRecordingEnabled=true;
     }
-    private void initPlayer() {
-        player = new EILPlayerManager(this,R.id.video_view);
+    private void initPlayer(View view) {
+        player = new EILPlayerManager(this,view);
         Log.i(TAG,"initPlayer start\n");
         player.setFullScreenOnly(true);
         player.setScaleType(EILPlayerManager.SCALETYPE_FITXY);

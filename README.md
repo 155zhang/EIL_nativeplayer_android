@@ -6,7 +6,7 @@ EIL_nativeplayer_android SDK是Android 平台上使用的软件开发工具包(S
 •	  播放流协议：RTMP, HLS, HTTP
 二. 运行环境
 •	最低支持版本为Android 5.0 (API level 21)
-•	支持的cpu架构：armv7
+•	支持的cpu架构：arm,armv7
 三. 快速集成
 本章节提供一个快速集成推流SDK基础功能的示例。
 具体可以参考app demo工程中的相应文件。
@@ -16,7 +16,7 @@ EIL_nativeplayer_android SDK是Android 平台上使用的软件开发工具包(S
 •	appdemo: 示例工程，演示本SDK主要接口功能的使用
 •	doc: SDK说明文档
 •	libs: 集成SDK需要的所有库文件
-o	libs/EIL_nativeplayersdk-debug.aar: Android Studio aar包
+o	libs/EIL_nativeplayersdk-debug(release).aar: Android Studio aar包
 o	libs/ijkplayer-java-release.aar: Android Studio aar包
 3.3 配置项目
 引入目标库, 将libs目录下的库文件引入到目标工程中并添加依赖。
