@@ -35,7 +35,7 @@
 
     <EditText
         android:inputType="textPersonName"
-        android:text="http://videoplay.ejucloud.com/newcode-88b562--20161124101351.mp4"
+        android:text="http://zv.3gv.ifeng.com/live/zhongwen800k.m3u8"
         android:ems="10"
         android:id="@+id/editText"
         android:layout_height="wrap_content"
@@ -51,4 +51,16 @@
         android:layout_marginStart="12dp"
         android:textColor="@android:color/holo_blue_bright"
         android:textColorLink="@android:color/background_dark" />
+
+    <Button
+        android:text="Rec"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_record"
+        android:layout_below="@+id/button_pause"
+        android:layout_alignParentStart="true"
+        android:onClick="clickToggleRecord"
+        android:layout_alignEnd="@+id/button_pause" />
+
+
 </RelativeLayout>

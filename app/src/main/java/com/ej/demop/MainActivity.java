@@ -37,10 +37,10 @@ public class MainActivity extends AppCompatActivity implements EILPlayerManager.
 
         player.setPlayerStateListener(this);
 
-        //player.play("http://zv.3gv.ifeng.com/live/zhongwen800k.m3u8");
-        player.play("http://videoplay.ejucloud.com/newcode-88b562--20161124101351.mp4");
+        player.play("http://zv.3gv.ifeng.com/live/zhongwen800k.m3u8");
+        //player.play("http://videoplay.ejucloud.com/newcode-88b562--20161124101351.mp4");
 
-        // player.play("/storage/emulated/legacy/TingLingPark_4K.mp4");
+        //player.play("/sdcard/2slice.mp4");
         Log.i(TAG,"initPlayer\n");
     }
     private void updateControls() {
@@ -87,6 +87,12 @@ public class MainActivity extends AppCompatActivity implements EILPlayerManager.
             player.onResume();
         mRecordingEnabled=!mRecordingEnabled;
         updateControls();
+    }
+    public void clickToggleRecord(@SuppressWarnings("unused") View unused) {
+
+        player.pause();
+        player.record();
+        player.onResume();
     }
     @Override
     public void onComplete() {
