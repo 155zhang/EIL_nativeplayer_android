@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity implements EILPlayerManager.
         // startActivity(intent);
         View layout_outer = this.findViewById(R.id.video_view);
         initPlayer(layout_outer);
-        mRecordingEnabled=true;
+        mRecordingEnabled=false;
     }
     private void initPlayer(View view) {
         player = new EILPlayerManager(this,view);
@@ -37,7 +37,9 @@ public class MainActivity extends AppCompatActivity implements EILPlayerManager.
 
         player.setPlayerStateListener(this);
 
-        player.play("http://zv.3gv.ifeng.com/live/zhongwen800k.m3u8");
+       // player.play("http://zv.3gv.ifeng.com/live/zhongwen800k.m3u8");
+        //player.play("rtmp://pili-live-rtmp.qdtong.net/leju-live-2/97aaaa");
+
         //player.play("http://videoplay.ejucloud.com/newcode-88b562--20161124101351.mp4");
 
         //player.play("/sdcard/2slice.mp4");
