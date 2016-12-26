@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements EILPlayerManager.
        // player.play("http://zv.3gv.ifeng.com/live/zhongwen800k.m3u8");
         //player.play("rtmp://pili-live-rtmp.qdtong.net/leju-live-2/97aaaa");
 
-        //player.play("http://videoplay.ejucloud.com/newcode-88b562--20161124101351.mp4");
+        player.play("http://videoplay.ejucloud.com/newcode-88b562--20161124101351.mp4");
 
         //player.play("/sdcard/2slice.mp4");
         Log.i(TAG,"initPlayer\n");
