@@ -24,11 +24,12 @@ public class MainActivity extends AppCompatActivity implements EILPlayerManager.
         // Intent intent=new Intent(this,PlayActivity.class);  //方法1
 
         // startActivity(intent);
-        initPlayer();
-        mRecordingEnabled=true;
+        View layout_outer = this.findViewById(R.id.video_view);
+        initPlayer(layout_outer);
+        mRecordingEnabled=false;
     }
-    private void initPlayer() {
-        player = new EILPlayerManager(this,R.id.video_view);
+    private void initPlayer(View view) {
+        player = new EILPlayerManager(this,view);
         Log.i(TAG,"initPlayer start\n");
         player.setFullScreenOnly(true);
         player.setScaleType(EILPlayerManager.SCALETYPE_FITXY);
@@ -37,9 +38,14 @@ public class MainActivity extends AppCompatActivity implements EILPlayerManager.
         player.setPlayerStateListener(this);
 
         //player.play("http://zv.3gv.ifeng.com/live/zhongwen800k.m3u8");
-        player.play("http://videoplay.ejucloud.com/newcode-88b562--20161124101351.mp4");
+        //player.play("rtmp://pili-live-rtmp.qdtong.net/leju-live-2/97aaaa");
 
-        // player.play("/storage/emulated/legacy/TingLingPark_4K.mp4");
+       // player.play("http://videoplay.ejucloud.com/newcode-88b562--20161124101351.mp4");
+
+        //player.play("/sdcard/2slice.mp4");
+        Button toggleRelease = (Button) findViewById(R.id.button_record);
+        toggleRelease.setClickable(false);
+        toggleRelease.setEnabled(false);
         Log.i(TAG,"initPlayer\n");
     }
     private void updateControls() {
@@ -52,12 +58,13 @@ public class MainActivity extends AppCompatActivity implements EILPlayerManager.
         //cb.setChecked(TextureRender.sWorkAroundContextProblem);
     }
     public void clickTogglePlay(@SuppressWarnings("unused") View unused) {
-
-
+        Button toggleRelease = (Button) findViewById(R.id.button_record);
 
         if(mRecordingEnabled) {
             player.stop();
             mRecordingEnabled=!mRecordingEnabled;
+            toggleRelease.setClickable(false);
+            toggleRelease.setEnabled(false);
         }
         if(!mRecordingEnabled)
         {
@@ -71,6 +78,8 @@ public class MainActivity extends AppCompatActivity implements EILPlayerManager.
             String s = et.getText().toString();
             player.play(s);
             mRecordingEnabled=!mRecordingEnabled;
+            toggleRelease.setClickable(true);
+            toggleRelease.setEnabled(true);
         }
 
 
@@ -78,14 +87,18 @@ public class MainActivity extends AppCompatActivity implements EILPlayerManager.
     }
     public void clickTogglePause(@SuppressWarnings("unused") View unused) {
 
-
-
         if(mRecordingEnabled)
             player.pause();
         else
             player.onResume();
         mRecordingEnabled=!mRecordingEnabled;
         updateControls();
+    }
+    public void clickToggleRecord(@SuppressWarnings("unused") View unused) {
+
+        player.pause();
+        player.record();
+        player.onResume();
     }
     @Override
     public void onComplete() {
