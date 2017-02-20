@@ -96,9 +96,9 @@ public class MainActivity extends AppCompatActivity implements EILPlayerManager.
     }
     public void clickToggleRecord(@SuppressWarnings("unused") View unused) {
 
-        player.pause();
-        player.record();
-        player.onResume();
+//        player.pause();
+//        player.record();
+//        player.onResume();
     }
     @Override
     public void onComplete() {
