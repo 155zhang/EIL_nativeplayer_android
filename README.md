@@ -1,12 +1,16 @@
 ﻿EIL易居互动直播云平台播放Android SDK使用说明
+
 EIL_nativeplayer_android SDK是Android 平台上使用的软件开发工具包(SDK), 负责播放视频直播和点播内容。
+
 一. 功能特点
 •	  音频编码：AAC
 •	  视频编码：H.264
 •	  播放流协议：RTMP, HLS, HTTP
+
 二. 运行环境
 •	最低支持版本为Android 4.4 (API level 19)
 •	支持的cpu架构：armv5,armv7a,arm64v8a,x86,x86_64
+
 三. 快速集成
 本章节提供一个快速集成推流SDK基础功能的示例。
 具体可以参考app demo工程中的相应文件。
@@ -64,6 +68,33 @@ public void clickTogglePlay(@SuppressWarnings("unused") View unused) {
         mRecordingEnabled=!mRecordingEnabled;
     }
 }
+四. 接口说明
+
+EILPlayerManager(final Activity activity, View view) 创建播放器实例
+
+void play(String url) 开始播放
+
+void pause() 暂停播放
+
+void onResume() 恢复播放
+
+public void stop() 停止播放
+
+void setVolume(float percent)设置音量 音量参数范围为0.0-1.0
+
+boolean isPlaying() 检查是否正在播放
+
+void seekto(int msec) 点播是，跳转到第msec（毫秒）处播放
+public int getCurrentPosition()获取当前播放位置
+
+public int getDuration() 获取媒体文件总时间长度、
+
+void setFullScreenOnly(boolean fullScreenOnly)是否以全屏模式播放
+
+void setScaleType(String scaleType)设定画面比例和缩放方式
+
+boolean onTouch(View v, MotionEvent event)相应屏幕触控控制音量，亮度的高级功能
+
 
 
 

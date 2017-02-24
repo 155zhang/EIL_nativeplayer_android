@@ -17,14 +17,6 @@
 
 
     </com.example.ejplayer.myplaysdk.widget.media.IjkVideoView>
-    <Button
-        android:text="PAUSE"
-        android:layout_height="wrap_content"
-        android:id="@+id/button_pause"
-        android:onClick="clickTogglePause"
-        android:elevation="0dp"
-        android:layout_marginTop="64dp"
-        android:layout_width="74dp" />
 
     <Button
         android:text="START"
@@ -35,7 +27,7 @@
 
     <EditText
         android:inputType="textPersonName"
-        android:text="http://zv.3gv.ifeng.com/live/zhongwen800k.m3u8"
+        android:text="http://videoplay.ejucloud.com/newcode-88b562--20161124101351.mp4"
         android:ems="10"
         android:id="@+id/editText"
         android:layout_height="wrap_content"
@@ -48,19 +40,9 @@
         android:layout_marginLeft="88dp"
         android:layout_alignBottom="@+id/button_play"
         android:layout_toEndOf="@+id/button_pause"
-        android:layout_marginStart="12dp"
+        android:layout_marginStart="88dp"
         android:textColor="@android:color/holo_blue_bright"
         android:textColorLink="@android:color/background_dark" />
-
-    <Button
-        android:text="Rec"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/button_record"
-        android:layout_below="@+id/button_pause"
-        android:layout_alignParentStart="true"
-        android:onClick="clickToggleRecord"
-        android:layout_alignEnd="@+id/button_pause" />
 
 
 </RelativeLayout>

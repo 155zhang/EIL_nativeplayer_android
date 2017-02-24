@@ -1,5 +1,9 @@
 package com.ej.demop;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.PermissionChecker;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -27,6 +31,11 @@ public class MainActivity extends AppCompatActivity implements EILPlayerManager.
         View layout_outer = this.findViewById(R.id.video_view);
         initPlayer(layout_outer);
         mRecordingEnabled=false;
+        if (PermissionChecker.checkSelfPermission(MainActivity.this, Manifest.permission.INTERNET)
+                == PackageManager.PERMISSION_DENIED) {
+            ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.INTERNET},
+                    0);
+        }
     }
     private void initPlayer(View view) {
         player = new EILPlayerManager(this,view);
@@ -43,9 +52,9 @@ public class MainActivity extends AppCompatActivity implements EILPlayerManager.
        // player.play("http://videoplay.ejucloud.com/newcode-88b562--20161124101351.mp4");
 
         //player.play("/sdcard/2slice.mp4");
-        Button toggleRelease = (Button) findViewById(R.id.button_record);
-        toggleRelease.setClickable(false);
-        toggleRelease.setEnabled(false);
+//        Button toggleRelease = (Button) findViewById(R.id.button_record);
+//        toggleRelease.setClickable(false);
+//        toggleRelease.setEnabled(false);
         Log.i(TAG,"initPlayer\n");
     }
     private void updateControls() {
@@ -58,13 +67,14 @@ public class MainActivity extends AppCompatActivity implements EILPlayerManager.
         //cb.setChecked(TextureRender.sWorkAroundContextProblem);
     }
     public void clickTogglePlay(@SuppressWarnings("unused") View unused) {
-        Button toggleRelease = (Button) findViewById(R.id.button_record);
+      //  Button toggleRelease = (Button) findViewById(R.id.button_record);
 
+        player.live(true);
         if(mRecordingEnabled) {
             player.stop();
             mRecordingEnabled=!mRecordingEnabled;
-            toggleRelease.setClickable(false);
-            toggleRelease.setEnabled(false);
+//            toggleRelease.setClickable(false);
+//            toggleRelease.setEnabled(false);
         }
         if(!mRecordingEnabled)
         {
@@ -78,8 +88,8 @@ public class MainActivity extends AppCompatActivity implements EILPlayerManager.
             String s = et.getText().toString();
             player.play(s);
             mRecordingEnabled=!mRecordingEnabled;
-            toggleRelease.setClickable(true);
-            toggleRelease.setEnabled(true);
+//            toggleRelease.setClickable(true);
+//            toggleRelease.setEnabled(true);
         }
 
 
