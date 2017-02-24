@@ -78,16 +78,16 @@ void pause() 暂停播放
 
 void onResume() 恢复播放
 
-public void stop() 停止播放
+void stop() 停止播放
 
 void setVolume(float percent)设置音量 音量参数范围为0.0-1.0
 
 boolean isPlaying() 检查是否正在播放
 
 void seekto(int msec) 点播是，跳转到第msec（毫秒）处播放
-public int getCurrentPosition()获取当前播放位置
+int getCurrentPosition()获取当前播放位置
 
-public int getDuration() 获取媒体文件总时间长度、
+int getDuration() 获取媒体文件总时间长度、
 
 void setFullScreenOnly(boolean fullScreenOnly)是否以全屏模式播放
 
