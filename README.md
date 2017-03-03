@@ -8,7 +8,7 @@ EIL_nativeplayer_android SDK是Android 平台上使用的软件开发工具包(S
 •	  播放流协议：RTMP, HLS, HTTP
 
 二. 运行环境
-•	最低支持版本为Android 4.4 (API level 19)
+•	最低支持版本为Android 4.2 (API level 17)
 •	支持的cpu架构：armv5,armv7a,arm64v8a,x86,x86_64
 
 三. 快速集成
