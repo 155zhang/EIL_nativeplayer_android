@@ -14,14 +14,17 @@ EIL_nativeplayer_android SDK是Android 平台上使用的软件开发工具包(S
 三. 快速集成
 本章节提供一个快速集成推流SDK基础功能的示例。
 具体可以参考app demo工程中的相应文件。
+
 3.1 下载工程
 3.1.1 github下载 从github下载SDK及demo工程
+
 3.2 工程目录结构
 •	appdemo: 示例工程，演示本SDK主要接口功能的使用
 •	doc: SDK说明文档
 •	libs: 集成SDK需要的所有库文件
 o	libs/EIL_nativeplayersdk-debug.aar: Android Studio aar包
 o	libs/ijkplayer-java-release.aar: Android Studio aar包
+
 3.3 配置项目
 引入目标库, 将libs目录下的库文件引入到目标工程中并添加依赖。
 可参考下述配置方式（以android studio为例）：
@@ -32,6 +35,7 @@ o	libs/ijkplayer-java-release.aar: Android Studio aar包
 <uses-permission android:name="android.permission.INTERNET" />
 <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
 3.4 简单播放示例
 具体可参考demo工程中的com.ej.demop类
 •	在布局文件中加入预览View
@@ -84,7 +88,8 @@ void setVolume(float percent)设置音量 音量参数范围为0.0-1.0
 
 boolean isPlaying() 检查是否正在播放
 
-void seekto(int msec) 点播是，跳转到第msec（毫秒）处播放
+void seekto(int msec) 点播时跳转到第msec（毫秒）处播放
+
 int getCurrentPosition()获取当前播放位置
 
 int getDuration() 获取媒体文件总时间长度、
@@ -93,7 +98,7 @@ void setFullScreenOnly(boolean fullScreenOnly)是否以全屏模式播放
 
 void setScaleType(String scaleType)设定画面比例和缩放方式
 
-boolean onTouch(View v, MotionEvent event)相应屏幕触控控制音量，亮度的高级功能
+boolean onTouch(View v, MotionEvent event)屏幕触控控制音量，亮度的高级功能
 
 
 
