@@ -1,6 +1,7 @@
 package com.ej.demop;
 
 import android.Manifest;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.PermissionChecker;
@@ -11,6 +12,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -36,6 +38,29 @@ public class MainActivity extends AppCompatActivity implements EILPlayerManager.
             ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.INTERNET},
                     0);
         }
+     //   this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        player.stop();
+    }
+    @Override
+    protected void onPause(){
+        super.onStop();
+         player.pause();
+    }
+    @Override
+    protected void onStop() {
+        super.onStop();
+        player.stop();
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event)
+    {
+        return player.onTouch(null,event);
+        //return true;
     }
     private void initPlayer(View view) {
         player = new EILPlayerManager(this,view);
@@ -45,6 +70,7 @@ public class MainActivity extends AppCompatActivity implements EILPlayerManager.
         player.playInFullScreen(true);
 
         player.setPlayerStateListener(this);
+        //player.play("http://pili-media.qdtong.net/recordings/z1.leju-live-2.58b3e2b1089d4/20170208082817--z1.leju-live-2.58b3e2b1089d4-1042595.m3u8");
 
         //player.play("http://zv.3gv.ifeng.com/live/zhongwen800k.m3u8");
         //player.play("rtmp://pili-live-rtmp.qdtong.net/leju-live-2/97aaaa");
@@ -62,14 +88,13 @@ public class MainActivity extends AppCompatActivity implements EILPlayerManager.
         int id = mRecordingEnabled ?
                 R.string.togglePlayOff : R.string.togglePlayOn;
         toggleRelease.setText(id);
-
         //CheckBox cb = (CheckBox) findViewById(R.id.rebindHack_checkbox);
         //cb.setChecked(TextureRender.sWorkAroundContextProblem);
     }
     public void clickTogglePlay(@SuppressWarnings("unused") View unused) {
       //  Button toggleRelease = (Button) findViewById(R.id.button_record);
 
-        player.live(true);
+        player.live(false);
         if(mRecordingEnabled) {
             player.stop();
             mRecordingEnabled=!mRecordingEnabled;
@@ -78,9 +103,9 @@ public class MainActivity extends AppCompatActivity implements EILPlayerManager.
         }
         if(!mRecordingEnabled)
         {
-            player.setFullScreenOnly(true);
-            player.setScaleType(EILPlayerManager.SCALETYPE_FITXY);
-            player.playInFullScreen(true);
+        //    player.setFullScreenOnly(true);
+        //    player.setScaleType(EILPlayerManager.SCALETYPE_FITXY);
+        //    player.playInFullScreen(true);
 
             player.setPlayerStateListener(this);
 
@@ -112,7 +137,12 @@ public class MainActivity extends AppCompatActivity implements EILPlayerManager.
     }
     @Override
     public void onComplete() {
-
+        Log.i(TAG,"complete\n");
+        new AlertDialog.Builder(this)
+                .setTitle("complete")
+                .setMessage("complete")
+                .setPositiveButton("Cancel", null)
+                .show();
     }
 
     @Override
@@ -120,7 +150,7 @@ public class MainActivity extends AppCompatActivity implements EILPlayerManager.
         Log.i(TAG,"error\n");
         new AlertDialog.Builder(this)
                 .setTitle("ERROR")
-                .setMessage("Can Not Connect To URL, Please try again later")
+                .setMessage("Could't Connect To URL, Please try again later")
                 .setPositiveButton("Cancel", null)
                 .show();
 
